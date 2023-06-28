@@ -77,10 +77,10 @@ Git will auto create a subfolder named `inundation-mapping` where the code will 
 2. Build Docker Image : `docker build -f Dockerfile -t <image_name>:<tag> <path/to/repository>`
 3. Create FIM group on host machine:
     - Linux: `groupadd -g 1370800178 fim`
-    - On a Mac: `sudo dscl . create /Groups/fim gid 1370800178` 
+    - **On a Mac:** `sudo dscl . create /Groups/fim gid 1370800178` 
 4. Change group ownership of repo (needs to be redone when a new file occurs in the repo):
     - Linux: `chgrp -R fim <path/to/repository>`
-    - Mac: `sudo chgrp -R fim /Users/<path-to-repo>/inundation-mapping/`
+    - **Mac:** `sudo chgrp -R fim /Users/<path-to-repo>/inundation-mapping/`
 
 ### Input Data
 Input data can be found on the ESIP S3 Bucket (see "Accessing Data through ESIP S3 Bucket" section above). The FIM inputs directory can be found at `s3://noaa-nws-owp-fim/hand_fim/inputs`. It is appx 400GB and it needs to be in your `data` folder.
@@ -107,12 +107,13 @@ This system has an optional tool called the `calibration database tool`. In orde
 
 ### Start/run the Docker Container
 
-Since all of the dependencies are managed by utilizing a Docker container, we must issue the [`docker run`](https://docs.docker.com/engine/reference/commandline/run/) command to start a container as the run-time environment. The container is launched from a Docker image which was built in [Installation](#installation). ## The `-v <input_path>:/data` must contain a subdirectory named `inputs` (similar to `s3://noaa-nws-owp-fim/hand_fim`). If the pathing is set correctly, we do not need to adjust the `params_template.env` file, and can use the default file paths provided.
+Since all of the dependencies are managed by utilizing a Docker container, we must issue the [`docker run`](https://docs.docker.com/engine/reference/commandline/run/) command to start a container as the run-time environment. The container is launched from a Docker image which was built in [Installation](#installation). ## The `-v <input_path>:/data` must contain a subdirectory named `inputs` (similar to `s3://noaa-nws-owp-fim/hand_fim`). **[Place the folder of input data into a folder called "inputs" but do not include "inputs" in the <input_path>,  (in other words,stop at the parent folder)]**. If the pathing is set correctly, we do not need to adjust the `params_template.env` file, and can use the default file paths provided.
 #### Add NetCDF 4 back in
-Add NetCDF4 back in with `Pipenv install`
-    Inside the container run:
-       - `pipenv install netCDF4==1.6.1`
-       - `pipenv update netCDF4`
+**Add NetCDF4 back in with** `Pipenv install`
+Inside the container run:
+-    `pipenv install netCDF4==1.6.1`
+
+-    `pipenv update netCDF4`
 
 ```bash 
 docker run --rm -it --name <your_container_name> \
@@ -135,6 +136,11 @@ docker run --rm -it --name robs_container \
 ### Produce HAND Hydrofabric
 ```
 fim_pipeline.sh -u <huc8> -n <name_your_run> -o
+```
+#### Actually run 
+**Run using the following arguments** 
+```
+fim_pipeline.sh -u <huc8> -n <name_your_run> -ud NONE -bd NONE -zd NONE -skipcal
 ```
 - There are a wide number of options and defaulted values, for details run ```fim_pipeline.sh -h```.
 - Mandatory arguments:
