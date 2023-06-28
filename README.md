@@ -77,8 +77,10 @@ Git will auto create a subfolder named `inundation-mapping` where the code will 
 2. Build Docker Image : `docker build -f Dockerfile -t <image_name>:<tag> <path/to/repository>`
 3. Create FIM group on host machine:
     - Linux: `groupadd -g 1370800178 fim`
+    - On a Mac: `sudo dscl . create /Groups/fim gid 1370800178` 
 4. Change group ownership of repo (needs to be redone when a new file occurs in the repo):
     - Linux: `chgrp -R fim <path/to/repository>`
+    - Mac: `sudo chgrp -R fim /Users/<path-to-repo>/inundation-mapping/
 
 ### Input Data
 Input data can be found on the ESIP S3 Bucket (see "Accessing Data through ESIP S3 Bucket" section above). The FIM inputs directory can be found at `s3://noaa-nws-owp-fim/hand_fim/inputs`. It is appx 400GB and it needs to be in your `data` folder.
@@ -105,7 +107,7 @@ This system has an optional tool called the `calibration database tool`. In orde
 
 ### Start/run the Docker Container
 
-Since all of the dependencies are managed by utilizing a Docker container, we must issue the [`docker run`](https://docs.docker.com/engine/reference/commandline/run/) command to start a container as the run-time environment. The container is launched from a Docker image which was built in [Installation](#installation). The `-v <input_path>:/data` must contain a subdirectory named `inputs` (similar to `s3://noaa-nws-owp-fim/hand_fim`). If the pathing is set correctly, we do not need to adjust the `params_template.env` file, and can use the default file paths provided.
+Since all of the dependencies are managed by utilizing a Docker container, we must issue the [`docker run`](https://docs.docker.com/engine/reference/commandline/run/) command to start a container as the run-time environment. The container is launched from a Docker image which was built in [Installation](#installation). ## The `-v <input_path>:/data` must contain a subdirectory named `inputs` (similar to `s3://noaa-nws-owp-fim/hand_fim`). If the pathing is set correctly, we do not need to adjust the `params_template.env` file, and can use the default file paths provided.
 
 
 ```bash 
