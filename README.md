@@ -111,8 +111,8 @@ Since all of the dependencies are managed by utilizing a Docker container, we mu
 #### Add NetCDF 4 back in
 Add NetCDF4 back in with `Pipenv install`
     Inside the container run:
-    `pipenv install netCDF4==1.6.1`
-    `pipenv update netCDF4`
+       - `pipenv install netCDF4==1.6.1`
+       - `pipenv update netCDF4`
 
 ```bash 
 docker run --rm -it --name <your_container_name> \
