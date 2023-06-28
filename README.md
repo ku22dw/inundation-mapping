@@ -51,11 +51,23 @@ By adjusting pathing, you can also download entire directories such as the `fim_
 You are welcome to set up your folder structure in any pattern you like. For example purposes, we will use a folder structure shown below.
 Starting with a base folder, e.g `/home/projects/` add the following folders:
 - `fim`
-   - `code`
+   - `code` 
    - `data`
-      - `inputs`
+      - `inputs` 
       - `outputs`
       - `outputs_temp`
+
+#### Alternatively
+- `projects`
+    - `fim`
+        - `fim_out`
+        - `fim_out_temp`
+        - `inputs`
+            - `3dep_dems`
+            - `etc...` 
+    - `inundation-mapping`
+  
+
 ### Getting FIM source code
 (based on sample pathing described above)
 
@@ -131,6 +143,15 @@ docker run --rm -it --name robs_container \
     -v /home/projects/fim/data/outputs_temp/:/fim_temp \
     -v /home/projects/fim/data/:/data \
     fim_4:dev_20230620
+```
+#### Alternatively (aligns with alt file structure above)
+```bash
+docker run --rm -it --name fim_container \
+    -v /Users/<username>/projects/inundation-mapping/:/foss_fim \
+    -v /Users/<username>/projects/fim/fim_out/:/outputs \
+    -v /Users/<username>/projects/fim/fim_out_temp/:/fim_temp \
+    -v /Users/<username>/projects/fim/:/data \
+    <image_name>:<tag>
 ```
 
 ### Produce HAND Hydrofabric
