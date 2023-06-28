@@ -80,7 +80,7 @@ Git will auto create a subfolder named `inundation-mapping` where the code will 
     - On a Mac: `sudo dscl . create /Groups/fim gid 1370800178` 
 4. Change group ownership of repo (needs to be redone when a new file occurs in the repo):
     - Linux: `chgrp -R fim <path/to/repository>`
-    - Mac: `sudo chgrp -R fim /Users/<path-to-repo>/inundation-mapping/
+    - Mac: `sudo chgrp -R fim /Users/<path-to-repo>/inundation-mapping/`
 
 ### Input Data
 Input data can be found on the ESIP S3 Bucket (see "Accessing Data through ESIP S3 Bucket" section above). The FIM inputs directory can be found at `s3://noaa-nws-owp-fim/hand_fim/inputs`. It is appx 400GB and it needs to be in your `data` folder.
