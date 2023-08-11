@@ -163,6 +163,10 @@ fim_pipeline.sh -u <huc8> -n <name_your_run> -o
 ```
 fim_pipeline.sh -u <huc8> -n <name_your_run> -ud NONE -bd NONE -zd NONE -skipcal
 ```
+For more than one HUC, follow this example:
+````
+fim_pipeline.sh -u '11110203 11110205' -ud NONE -bd NONE -zd NONE -skipcal
+````
 - There are a wide number of options and defaulted values, for details run ```fim_pipeline.sh -h```.
 - Mandatory arguments:
     - `-u` can be a single huc, a series passed in quotes space delimited, or a line-delimited (.lst) file. To run the entire domain of available data use one of the ```/data/inputs/included_huc8.lst``` files or a HUC list file of your choice.  Depending on the performance of your server, especially the number of CPU cores, running the full domain can take multiple days.
